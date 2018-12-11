@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+message Request {
+  enum MessageTypes {
+    GET_BLOCKCHAIN_LEN = 0;
+    GET_BLOCK = 1;
+    GET_PEERS = 2;
+    GET_WALLET_STATUS = 3;
+    GET_VERSION = 4;
+    GET_CONTRACT_CODE = 5;
+    GET_CONTRACT_STATE = 6;
+    GET_INTERESTS = 7;
+    HASH_EXIST = 8;
+    GET_WALLET = 9;
+  }
+
+  MessageTypes type = 1;
+  bytes data = 2;
+
+  bytes address = 4;
+  uint32 shardAddress = 5;
+}
+
+message Envelope {
+  enum ContentType {
+    BROADCAST = 0;
+    OTHER = 1;
+    REQUEST  = 2;
+    INTERESTS = 3;
+    NEIGHBOUR_INTERESTS = 4;
+  }
+
+  ContentType type = 1;
+  bytes data = 2;
+  uint32 shard = 3;
+  Signature identity = 4;
+  uint32 TTL = 5;  
+}
+
+message Broadcast {
+  enum BroadcastType {
+    TRANSACTION = 0;
+    BLOCK_PROPOSAL = 1;
+    CHECKPOINT_VOTE = 2;
+    NEW_CONTRACT = 3;
+    WITHDRAW = 4;
+    MERKLE_ROOTS_SIGNED = 5;
+    SCHNORR = 6;
+    SIGN_SCHNORR = 7;
+    MERKLE_PROOF = 8;
+    MONEY_WITHDRAW = 9;
+  }
+
+  BroadcastType type = 1;
+  bytes data = 2;
+
+  bytes address = 4;
+  uint32 shardAddress = 5;
+}
+
+
+message Signature {
+  bytes pubkey = 1;
+
+  bytes r = 2;
+  bytes s = 3;
+
+  bytes data = 4;
+}
+
+message Interests {
+  repeated string keys = 1;
+
+  bytes address = 2;
+  uint32 shardAddress = 3;
+}
+
+message Peers {
+  repeated string ip = 1;
+
+  bytes address = 2;
+  uint32 shardAddress = 3;
+}
+
+message PeersAndInterests {
+  repeated string keys = 1;
+  repeated string ips = 2;
+
+  bytes address = 3;
+  uint32 shardAddress = 4;
+}

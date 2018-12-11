@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+message Transaction {
+    bytes sender = 1;
+    string recipient = 2;
+    uint32 nonce = 3;
+
+    uint64 amount = 4;
+    uint32 gas = 5;
+
+    bool contractCreation = 6;
+    string function = 7;
+    repeated uint64 args = 8;
+    bytes data = 9;
+    
+    bytes r = 10;
+    bytes s = 11;
+
+    bytes pubSchnorrKey = 12;
+    uint32 shard = 13;
+}
+
+message Block {
+    uint64 index = 1;
+    uint64 timestamp = 2;
+    bytes prevHash = 3;
+    string miner = 4;
+
+    repeated Transaction transactions = 5;
+    repeated Receipt receiptsContracts = 6;
+
+    bytes merkleRootReceipt = 7;
+
+    uint32 shard = 8;
+}
+
+message MerkleRootsSigned {
+    uint32 shard = 1;
+
+    repeated bytes merkleRootsReceipt = 2;
+
+    bytes r_signedMerkleRootsReceipt = 3;
+    bytes s_signedMerkleRootsReceipt = 4;
+    
+    repeated bytes r_validators = 5;
+    repeated bytes p_validators = 6;
+}
+
+message signSchnorr {
+    string wallet = 1;
+
+    bytes rSchnorr = 2;
+    bytes pSchnorr = 3;
+
+    bytes signReceipt = 4;
+    bytes messageSignReceipt = 5;
+}
+
+message Schnorr {
+    bytes r = 1;
+    string p = 2;
+}
+
+message Bls {
+    Block block = 1;
+    bytes signature = 2;
+    bytes pubKey = 3;
+}
+
+message AccountState {
+    uint64 balance = 1;
+}
+
+message ContractState {
+    bytes memory = 1;
+    repeated uint64 globals = 2;
+    bool locked = 3;
+    bytes allowedWallet = 4;
+}
+
+message CasperVote {
+    bytes source = 1;
+    bytes target = 2;
+
+    uint64 sourceHeight = 3;
+    uint64 targetHeight = 4;
+
+    bytes r = 5;
+    bytes s = 6;
+
+    string publicKey = 7;
+}
+
+message ValidatorWithdraw {
+    bytes publicKey = 1;
+}
+
+message Receipt {
+    string sender = 1;
+    string recipient = 2;
+    uint64 amount = 3;
+    uint32 nonce = 4;
+}
+
+message MerkleProof {
+    repeated string mapLeaf = 1;
+    repeated bytes mapHash = 2;
+
+    bytes root = 3;
+    bytes leaf = 4;
+
+    Receipt receipt = 5;
+    Transaction transaction = 6;
+
+    uint32 shard = 7;
+}
+
+message MoneyWithdraw {
+    string wallet = 1;
+}

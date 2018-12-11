@@ -1,0 +1,26 @@
+version: "3"
+ 
+services:
+  coordinator:
+    image: "dexmcoin/coordinator"
+    ports:
+      - "5000:5000"
+
+  worker:
+    image: "dexmcoin/worker"
+    links:
+      - coordinator
+    ports:
+      - "3141:3141"
+    depends_on:
+      - coordinator
+    deploy:
+      mode: replicated
+      replicas: 5
+
+      resources:
+        # Hard limit - Docker does not allow to allocate more
+        limits:
+          cpus: '0.25'
+          memory: 512M
+ 

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message IPCEnvelope {
+    enum MsgType {
+        GET_BLOCK_NUMBER = 0; // Current block index
+        GET_TS = 1;           // Current timestamp as provided by the miner of the block
+        GET_SENDER = 2;       // Caller of the current execution
+        GET_BLOCKHASH = 3;    // Blockhash for the latest 256 blocks excluding the current one
+        SUICIDE = 4;          // Kill the executing contract
+        REVERT = 5;           // Kill the execution, revert state and return remaining gas
+        GET = 6;              // Get the value for a key
+        APPEND = 7;           // Append a value to a key, set it if it's empty
+    }
+
+    MsgType type = 1;
+    bytes data = 2;
+}
+
+message Append {
+    bytes key = 1;
+    bytes value = 2; 
+}
