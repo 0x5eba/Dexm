@@ -6,8 +6,8 @@ import (
 
 	"github.com/0x5eba/Dexm/dexm-core/wallet"
 	bp "github.com/0x5eba/Dexm/protobufs/build/blockchain"
-	"github.com/0x5eba/Dexm/wagon/exec"
-	"github.com/0x5eba/Dexm/wagon/wasm"
+	"github.com/dexm-coin/wagon/exec"
+	"github.com/dexm-coin/wagon/wasm"
 	"github.com/golang/protobuf/proto"
 	log "github.com/sirupsen/logrus"
 	"github.com/syndtr/goleveldb/leveldb"

@@ -7,7 +7,7 @@ import (
 	"github.com/0x5eba/Dexm/dexm-core/util"
 	"github.com/0x5eba/Dexm/dexm-core/wallet"
 	bp "github.com/0x5eba/Dexm/protobufs/build/blockchain"
-	"github.com/0x5eba/Dexm/wagon/exec"
+	"github.com/dexm-coin/wagon/exec"
 )
 
 func revert(proc *exec.Process) {
