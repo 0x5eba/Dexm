@@ -6,7 +6,7 @@ Dexm is a revolutionary cryptocurrency that aims to be usable and user friendly.
 
 ```sh
 $ git clone https://github.com/0x5eba/Dexm.git
-$ cd dexm-core
+$ cd Dexm/dexm-core
 $ ./init.sh
 ```
 
@@ -15,7 +15,7 @@ $ ./init.sh
 1) First of all you have to create your identity (wallet) in the network.
 
     ```sh
-    $ ./dexm mw myWallet
+    $ ./dexm mw myWallet 1
     ```
 
 2) Now start your node to receive the message from the network.
@@ -26,3 +26,5 @@ $ ./init.sh
 
 3) Ones you done that you are in! 
    Now you can make transaction or create and interact smart contract
+   
+**To interact with the network a server must be up, right now there aren't any server up, so the network won't receive blocks**
